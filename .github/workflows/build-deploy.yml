@@ -64,6 +64,8 @@ jobs:
     needs: [aarch64, i686, x86_64]
     runs-on: ubuntu-latest
     if: "github.ref == 'refs/heads/main'"
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - uses: actions/checkout@v2
       - name: Login to Docker Hub
