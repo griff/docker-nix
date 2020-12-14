@@ -33,5 +33,6 @@ docker buildx build \
   --build-arg BASH=$STORE_BASH \
   --build-arg COREUTILS=$STORE_COREUTILS \
   --progress plain \
+  --load \
   --tag griff/nix-$image_arch .
 docker tag griff/nix-$image_arch griff/nix-$ARCH
