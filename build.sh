@@ -34,9 +34,9 @@ docker buildx build \
   --build-arg COREUTILS=$STORE_COREUTILS \
   --progress plain \
   --load \
-  --tag griff/nix-$image_arch .
-docker tag griff/nix-$image_arch griff/nix-$ARCH
+  --tag griff/nix:$image_arch .
+docker tag griff/nix:$image_arch griff/nix:$ARCH
 
-docker run --rm -t griff/nix-$image_arch sh -c "nix build -I nixpkgs=channel:nixos-20.09 '(with import <nixpkgs> { }; runCommand \"foo\" {} \"uname -a > \$out\")' && cat ./result"
-docker run --rm -t griff/nix-$image_arch sh -l -c 'nix-env -f channel:nixos-20.09 -iA hello && test "$(hello)" = "Hello, world!"'
-docker run --rm -t griff/nix-$image_arch nix-shell  -I nixpkgs=channel:nixos-20.09 -p hello --run 'test "$(hello)" = "Hello, world!"'
+docker run --rm -t griff/nix:$image_arch sh -c "nix build -I nixpkgs=channel:nixos-20.09 '(with import <nixpkgs> { }; runCommand \"foo\" {} \"uname -a > \$out\")' && cat ./result"
+docker run --rm -t griff/nix:$image_arch sh -l -c 'nix-env -f channel:nixos-20.09 -iA hello && test "$(hello)" = "Hello, world!"'
+docker run --rm -t griff/nix:$image_arch nix-shell  -I nixpkgs=channel:nixos-20.09 -p hello --run 'test "$(hello)" = "Hello, world!"'

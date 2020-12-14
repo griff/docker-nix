@@ -9,5 +9,5 @@ else
 fi
 . ./functions.sh
 
-docker push griff/nix-$image_arch
-docker push griff/nix-$ARCH
+docker push griff/nix:$image_arch
+docker push griff/nix:$ARCH
