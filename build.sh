@@ -9,7 +9,11 @@ else
 fi
 . ./functions.sh
 
-gpg --keyserver pool.sks-keyservers.net --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
+if [ ! -d "$HOME/.gnupg" ]; then
+  mkdir -p "$HOME/.gnupg"
+  echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
+fi
+gpg --keyserver hkp://keys.gnupg.net --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
 rm -rf dl
 mkdir dl
 cd dl
