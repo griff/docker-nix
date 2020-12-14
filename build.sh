@@ -1,13 +1,13 @@
 #!/bin/sh
 set -e
 set -x
-. version.sh
+. ./version.sh
 if [ -n "$1" ]; then
     ARCH="$1"
 else
     ARCH="aarch64"
 fi
-. functions.sh
+. ./functions.sh
 
 gpg --keyserver pool.sks-keyservers.net --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
 rm -rf dl
