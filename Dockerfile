@@ -16,7 +16,6 @@ RUN mkdir -p /etc/profile.d /etc/ssl/certs /var/empty \
 USER app
 ENV USER=app
 RUN chmod -R a-w /nix/store/* \
- && mkdir -p /nix/var/nix/profiles/per-user/app/channels \
  && /nix/install --no-channel-add \
  && ln -s /app/.nix-profile/etc/profile.d/nix.sh /etc/profile.d/ \
  && ln -s "$HOME/.nix-profile/etc/ssl/certs/ca-bundle.crt" /etc/ssl/certs/ca-certificates.crt \
