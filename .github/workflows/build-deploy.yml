@@ -74,11 +74,11 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Build
-        run: docker manifest create griff/nix --amend griff/nix:amd64 --amend griff/nix:i386 --amend griff/nix:arm64v8
+        run: docker manifest create griff/nix griff/nix:amd64 griff/nix:i386 griff/nix:arm64v8
       - name: Test
         run: docker build -f Dockerfile.test .
       - name: Deploy
-        run: docker manifest push griff/nix
+        run: docker manifest push -p griff/nix
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v2
         with:
