@@ -9,7 +9,7 @@ ENV PATH=/bin:$COREUTILS/bin:$BASH/bin
 RUN ["mkdir", "-m", "777", "/bin"]
 RUN ["sh", "-c", "ln -s /nix/store/*-bash-*/bin/sh /bin/sh"]
 RUN mkdir -p /etc/profile.d /etc/ssl/certs /var/empty \
- && mkdir -m 777 /tmp \
+ && mkdir -m 777 /tmp /usr /usr/bin \
  && mkdir -m 700 /app \
  && chown app:app /etc/profile.d /etc/ssl /etc/ssl/certs /app \
  && chmod a+rx /etc
@@ -29,6 +29,7 @@ RUN chmod -R a-w /nix/store/* \
  && rm /nix/.reginfo /nix/install /nix/*.sh /bin/sh \
  && ln -s /app/.nix-profile/bin/bash /bin/bash \
  && ln -s /app/.nix-profile/bin/sh /bin/sh \
+ && ln -s /app/.nix-profile/bin/env /usr/bin/env \
  && /app/.nix-profile/bin/nix-store --optimise \
  && /app/.nix-profile/bin/nix-collect-garbage -d \
  && /app/.nix-profile/bin/nix-store --verify --check-contents
